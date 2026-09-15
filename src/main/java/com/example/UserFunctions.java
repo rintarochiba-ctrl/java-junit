@@ -96,16 +96,13 @@ public class UserFunctions {
      */
     public boolean checkAndPass(int score, ScoreValidator validator) {
         // 外部バリデーターがfalseを返したら即座に不合格 (ブランチ1)
-        if (!validator.validate(score)) { 
-            return false; 
-        }
-        
-        // 内部の合格ロジック (点数が50点以上で合格)
-        if (score >= 50) { // ブランチ2 (合格)
-            return true;
-        } else { // ブランチ3 (不合格)
+        if (!validator.validate(score)) {
             return false;
         }
+        // 50以上100以下の場合のみtrueそれ以外はfalseを返す
+        if (50 <= score && score <= 100){
+            return true;
+        }
+        return false;
     }
 }
-
